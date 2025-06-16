@@ -1,96 +1,87 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>جدول جرعات الأدوية للأطفال</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            direction: rtl;
-            background-color: #f9f9f9;
-            color: #333;
-            padding: 20px;
-        }
-        h1 {
-            text-align: center;
-            color: #2c3e50;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 12px;
-            text-align: center;
-        }
-        th {
-            background-color: #3498db;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>قائمة الأدوية – جرعتي</title>
+  <style>
+    body { font-family: 'Tajawal', sans-serif; background-color: #f9f9f9; padding: 20px; }
+    h1 { color: #007bff; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 10px; text-align: right; }
+    th { background-color: #007bff; color: white; }
+    tr:nth-child(even) { background-color: #f1f1f1; }
+  </style>
 </head>
 <body>
-    <h1>جدول جرعات الأدوية الشائعة للأطفال</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>الاسم العلمي</th>
-                <th>الاسم التجاري</th>
-                <th>الجرعة</th>
-                <th>الشكل الدوائي</th>
-                <th>الفئة العمرية</th>
-                <th>المرجع</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Paracetamol</td>
-                <td>Fevadol</td>
-                <td>15 مجم/كجم كل 4-6 ساعات (بحد أقصى 5 جرعات/يوم)</td>
-                <td>شراب / تحاميل</td>
-                <td>من الولادة فأكثر</td>
-                <td>UpToDate</td>
-            </tr>
-            <tr>
-                <td>Ibuprofen</td>
-                <td>Brufen</td>
-                <td>10 مجم/كجم كل 6-8 ساعات</td>
-                <td>شراب</td>
-                <td>أكثر من 6 أشهر</td>
-                <td>UpToDate</td>
-            </tr>
-            <tr>
-                <td>Amoxicillin</td>
-                <td>Amoxil</td>
-                <td>25-50 مجم/كجم/يوم مقسمة على جرعتين أو ثلاث</td>
-                <td>شراب</td>
-                <td>حديثي الولادة فأكثر</td>
-                <td>BMJ</td>
-            </tr>
-            <tr>
-                <td>Azithromycin</td>
-                <td>Zithromax</td>
-                <td>10 مجم/كجم مرة يوميًا لمدة 3-5 أيام</td>
-                <td>شراب</td>
-                <td>6 أشهر فأكثر</td>
-                <td>AMBOSS</td>
-            </tr>
-            <tr>
-                <td>Ondansetron</td>
-                <td>Zofran</td>
-                <td>0.15 مجم/كجم كل 8 ساعات (حد أقصى 8 مجم)</td>
-                <td>شراب</td>
-                <td>شهر فأكثر</td>
-                <td>UpToDate</td>
-            </tr>
-        </tbody>
-    </table>
+
+  <h1>💊 قائمة الأدوية الشائعة</h1>
+
+  <table>
+    <tr>
+      <th>الاسم العلمي</th>
+      <th>الاسم التجاري</th>
+      <th>الشكل الصيدلاني</th>
+      <th>الجرعة المعتادة</th>
+      <th>ملاحظات</th>
+    </tr>
+
+    <tr>
+      <td>Paracetamol</td>
+      <td>سيتال، فيفادول، أدول</td>
+      <td>شراب، تحاميل</td>
+      <td>10-15 مجم/كجم كل 6-8 ساعات</td>
+      <td>الحد الأقصى اليومي: 60 مجم/كجم</td>
+    </tr>
+
+    <tr>
+      <td>Ibuprofen</td>
+      <td>بروفين، نيوروفين</td>
+      <td>شراب</td>
+      <td>5-10 مجم/كجم كل 6-8 ساعات</td>
+      <td>لا يستخدم تحت عمر 6 شهور</td>
+    </tr>
+
+    <tr>
+      <td>Amoxicillin</td>
+      <td>أموكسيل، هيكساكلين</td>
+      <td>شراب</td>
+      <td>20-40 مجم/كجم/يوم مقسمة كل 8 ساعات</td>
+      <td>يعطى قبل الأكل</td>
+    </tr>
+
+    <tr>
+      <td>Azithromycin</td>
+      <td>زيثروماكس، أزيثرودار</td>
+      <td>شراب</td>
+      <td>10 مجم/كجم مرة يوميًا لمدة 3 أيام</td>
+      <td>الحد الأقصى: 500 مجم/يوم</td>
+    </tr>
+
+    <tr>
+      <td>Salbutamol</td>
+      <td>فنتولين</td>
+      <td>بخاخ، محلول استنشاق</td>
+      <td>0.15 مجم/كجم (حد أقصى 2.5 مجم)</td>
+      <td>كل 4-6 ساعات حسب الحاجة</td>
+    </tr>
+
+    <tr>
+      <td>Ceftriaxone</td>
+      <td>روسبين، سيفترياكس</td>
+      <td>حقن IV/IM</td>
+      <td>50-100 مجم/كجم/يوم</td>
+      <td>لا يُعطى مع الكالسيوم</td>
+    </tr>
+
+    <tr>
+      <td>Ondansetron</td>
+      <td>زوفران</td>
+      <td>شراب، IV</td>
+      <td>0.15 مجم/كجم</td>
+      <td>الحد الأقصى: 8 مجم/جرعة</td>
+    </tr>
+
+  </table>
+
 </body>
 </html>
