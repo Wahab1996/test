@@ -37,11 +37,15 @@
       font-size: 16px;
     }
     button {
-      margin-top: 10px;
       background-color: #007bff;
       color: white;
       border: none;
+      font-weight: bold;
       cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background-color: #0056b3;
     }
     .result {
       margin-top: 20px;
@@ -50,125 +54,147 @@
       border: 1px solid #b3daff;
       border-radius: 8px;
       font-weight: bold;
+      white-space: pre-wrap;
     }
-    .signature {
-      margin-top: 30px;
+    .btn-group {
+      display: flex;
+      gap: 10px;
+      margin-top: 10px;
+    }
+    .footer {
+      margin-top: 40px;
       font-size: 14px;
       text-align: center;
       color: #555;
-      border-top: 1px solid #ccc;
-      padding-top: 10px;
+      line-height: 1.6;
     }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>💊 تطبيق جرعتي</h1>
-    <p style="text-align:center;">حاسبة جرعات أدوية الأطفال حسب الوزن</p>
+    <p style="text-align:center;">حاسبة جرعات أدوية الأطفال بناءً على الوزن والعمر</p>
 
+    <h2>🧮 الحاسبة التفاعلية</h2>
     <label for="weight">وزن الطفل (كجم):</label>
     <input type="number" id="weight" placeholder="مثال: 12">
 
     <label for="drug">اختر الدواء:</label>
-    <select id="drug"></select>
+    <select id="drug">
+      <option value="">-- اختر الدواء --</option>
+      <option value="paracetamol">Paracetamol – سيتال، فيفادول</option>
+      <option value="ibuprofen">Ibuprofen – بروفين</option>
+      <option value="azithromycin">Azithromycin – زيثروماكس</option>
+      <option value="ceftriaxone">Ceftriaxone – روزفين</option>
+      <option value="ondansetron">Ondansetron – زوفران</option>
+    </select>
+
+    <label for="concentration">تركيز الدواء (مجم/5 مل):</label>
+    <input type="number" id="concentration" placeholder="مثال: 120">
 
     <button onclick="calculateDose()">احسب الجرعة</button>
-    <button onclick="copyDose()">📋 نسخ الجرعة</button>
-    <button onclick="showMlDose()">💧 عرض الجرعة بالمل</button>
+    
+    <div class="btn-group">
+      <button onclick="copyResult()">📋 نسخ الجرعة</button>
+      <button onclick="showMlDose()">💧 عرض الجرعة بالمل</button>
+    </div>
 
     <div id="result" class="result" style="display:none;"></div>
 
-    <div class="signature">
+    <div class="footer">
+      <hr>
       تم بواسطة: د. عبدالوهاب عبد المنان الشيخ – طبيب طوارئ أطفال، طموح طبيب أسرة<br>
-      مطور تطبيق جرعتي<br>
-      المراجع العلمية: UpToDate , BMJ , AMBOSS , SAUDI GUIDELINES , MEDSCAPE
+      مطور تطبيق <strong>جرعتي</strong><br>
+      <small>المراجع العلمية: UpToDate, BMJ, AMBOSS, Saudi Guidelines, Medscape</small>
     </div>
   </div>
 
   <script>
-    const drugs = [
-      { scientific: "Paracetamol", trade: "سيتال", dose: "10–15", unit: "مجم", interval: "كل 6–8 ساعات", max: 60, concentration: 120 },
-      { scientific: "Ibuprofen", trade: "بروفين", dose: "5–10", unit: "مجم", interval: "كل 6–8 ساعات", max: 40, concentration: 100 },
-      { scientific: "Azithromycin", trade: "زيثروماكس", dose: "10", unit: "مجم", interval: "مرة يومياً لمدة 3 أيام", max: 500, concentration: 200 },
-      { scientific: "Ceftriaxone", trade: "روسبين", dose: "50–100", unit: "مجم", interval: "مرة يومياً", max: 2000 },
-      { scientific: "Ondansetron", trade: "زوفران", dose: "0.15", unit: "مجم", interval: "عند اللزوم", max: 8, concentration: 2 }
-    ];
-
-    const select = document.getElementById("drug");
-    drugs.forEach((drug, i) => {
-      const option = document.createElement("option");
-      option.value = i;
-      option.textContent = `${drug.scientific} – ${drug.trade}`;
-      select.appendChild(option);
-    });
-
-    let currentDoseText = "";
+    const doseInfo = {
+      paracetamol: {
+        min: 10, max: 15, maxDaily: 60, note: "الحد الأقصى اليومي: 60 مجم/كجم"
+      },
+      ibuprofen: {
+        min: 5, max: 10, note: "لا يستخدم تحت عمر 6 شهور"
+      },
+      azithromycin: {
+        fixed: 10, note: "لمدة 3 أيام فقط"
+      },
+      ceftriaxone: {
+        min: 50, max: 100, note: "لا يُخلط مع الكالسيوم"
+      },
+      ondansetron: {
+        fixed: 0.15, maxSingle: 8, note: "الحد الأقصى للجرعة الواحدة: 8 مجم"
+      }
+    };
 
     function calculateDose() {
       const weight = parseFloat(document.getElementById("weight").value);
-      const drugIndex = document.getElementById("drug").value;
+      const drug = document.getElementById("drug").value;
       const resultDiv = document.getElementById("result");
+      resultDiv.style.display = "block";
 
-      if (!weight || weight <= 0 || drugIndex === "") {
-        resultDiv.style.display = "block";
+      if (!weight || weight <= 0 || !drug) {
         resultDiv.innerHTML = "❌ الرجاء إدخال وزن صحيح واختيار دواء.";
         return;
       }
 
-      const d = drugs[drugIndex];
-      let doseText = "";
-      let range = d.dose.split("–");
+      const drugData = doseInfo[drug];
+      let output = `✅ الجرعة المحسوبة لـ ${drug}:\n`;
 
-      if (range.length === 2) {
-        const min = (parseFloat(range[0]) * weight).toFixed(1);
-        const max = (parseFloat(range[1]) * weight).toFixed(1);
-        doseText = `${min} – ${max} ${d.unit} ${d.interval}`;
-      } else {
-        const amount = (parseFloat(range[0]) * weight).toFixed(1);
-        doseText = `${amount} ${d.unit} ${d.interval}`;
+      if (drugData.fixed) {
+        let dose = (drugData.fixed * weight).toFixed(2);
+        if (drugData.maxSingle && dose > drugData.maxSingle) {
+          dose = drugData.maxSingle;
+          output += `🔹 ${dose} مجم (تم تطبيق الحد الأقصى: ${drugData.maxSingle} مجم)\n`;
+        } else {
+          output += `🔹 ${dose} مجم\n`;
+        }
+      } else if (drugData.min && drugData.max) {
+        const minDose = (drugData.min * weight).toFixed(1);
+        const maxDose = (drugData.max * weight).toFixed(1);
+        output += `🔹 من ${minDose} إلى ${maxDose} مجم\n`;
       }
 
-      doseText += `<br>⚠️ الحد الأقصى للجرعة اليومية: ${d.max} ${d.unit}`;
-
-      currentDoseText = doseText.replace(/<br>/g, "\n"); // for copying
-      resultDiv.innerHTML = `✅ الجرعة المحسوبة:<br><strong>${doseText}</strong>`;
-      resultDiv.style.display = "block";
+      output += `📌 ملاحظة: ${drugData.note}`;
+      resultDiv.innerHTML = output;
     }
 
-    function copyDose() {
-      if (currentDoseText) {
-        navigator.clipboard.writeText(currentDoseText);
-        alert("✅ تم نسخ الجرعة إلى الحافظة");
-      } else {
-        alert("❗ الرجاء حساب الجرعة أولاً");
-      }
+    function copyResult() {
+      const result = document.getElementById("result").innerText;
+      navigator.clipboard.writeText(result);
+      alert("✅ تم نسخ الجرعة إلى الحافظة.");
     }
 
     function showMlDose() {
+      const drug = document.getElementById("drug").value;
       const weight = parseFloat(document.getElementById("weight").value);
-      const drugIndex = document.getElementById("drug").value;
-      if (!weight || drugIndex === "") {
-        alert("❗ الرجاء إدخال الوزن واختيار دواء");
+      const conc = parseFloat(document.getElementById("concentration").value);
+      const resultDiv = document.getElementById("result");
+
+      if (!weight || weight <= 0 || !drug || !conc) {
+        alert("❌ الرجاء إدخال الوزن، اختيار الدواء، وكتابة التركيز.");
         return;
       }
 
-      const d = drugs[drugIndex];
-      if (!d.concentration) {
-        alert("⚠️ لا يتوفر تركيز لهذا الدواء");
-        return;
+      const drugData = doseInfo[drug];
+      let output = resultDiv.innerText + "\n\n💧 الجرعة بالمل:\n";
+
+      function mgToMl(mg, conc) {
+        return ((mg / conc) * 5).toFixed(1);
       }
 
-      let range = d.dose.split("–");
-      const ml = val => (val * weight / d.concentration).toFixed(2);
-
-      if (range.length === 2) {
-        const minMl = ml(parseFloat(range[0]));
-        const maxMl = ml(parseFloat(range[1]));
-        alert(`💧 الجرعة بالمل:\n${minMl} – ${maxMl} مل`);
-      } else {
-        const amountMl = ml(parseFloat(range[0]));
-        alert(`💧 الجرعة بالمل:\n${amountMl} مل`);
+      if (drugData.fixed) {
+        let mg = drugData.fixed * weight;
+        if (drugData.maxSingle && mg > drugData.maxSingle) mg = drugData.maxSingle;
+        output += `🔹 ${mgToMl(mg, conc)} مل\n`;
+      } else if (drugData.min && drugData.max) {
+        const minMg = drugData.min * weight;
+        const maxMg = drugData.max * weight;
+        output += `🔹 من ${mgToMl(minMg, conc)} إلى ${mgToMl(maxMg, conc)} مل\n`;
       }
+
+      resultDiv.innerText = output;
     }
   </script>
 </body>
