@@ -28,7 +28,7 @@
       margin-top: 15px;
       font-weight: bold;
     }
-    input, select {
+    input, select, button {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
@@ -37,14 +37,10 @@
       font-size: 16px;
     }
     button {
-      margin-top: 20px;
+      margin-top: 10px;
       background-color: #007bff;
       color: white;
-      padding: 12px;
-      width: 100%;
       border: none;
-      font-size: 16px;
-      border-radius: 8px;
       cursor: pointer;
     }
     .result {
@@ -55,124 +51,124 @@
       border-radius: 8px;
       font-weight: bold;
     }
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    .signature {
       margin-top: 30px;
-    }
-    th, td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: right;
-    }
-    th {
-      background-color: #007bff;
-      color: white;
-    }
-    tr:nth-child(even) {
-      background-color: #f1f1f1;
+      font-size: 14px;
+      text-align: center;
+      color: #555;
+      border-top: 1px solid #ccc;
+      padding-top: 10px;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>🔬 تطبيق جرعتي</h1>
-    <p style="text-align:center;">حاسبة جرعات أدوية الأطفال بناءً على الوزن والعمر</p>
+    <h1>💊 تطبيق جرعتي</h1>
+    <p style="text-align:center;">حاسبة جرعات أدوية الأطفال حسب الوزن</p>
 
-    <h2>🧮 حاسبة الجرعة</h2>
     <label for="weight">وزن الطفل (كجم):</label>
     <input type="number" id="weight" placeholder="مثال: 12">
 
     <label for="drug">اختر الدواء:</label>
-    <select id="drug">
-      <option value="">-- اختر الدواء --</option>
-      <option value="paracetamol">Paracetamol – سيتال، فيفادول</option>
-      <option value="ibuprofen">Ibuprofen – بروفين</option>
-      <option value="azithromycin">Azithromycin – زيثروماكس</option>
-      <option value="ceftriaxone">Ceftriaxone – روزفين</option>
-      <option value="ondansetron">Ondansetron – زوفران</option>
-    </select>
+    <select id="drug"></select>
 
     <button onclick="calculateDose()">احسب الجرعة</button>
+    <button onclick="copyDose()">📋 نسخ الجرعة</button>
+    <button onclick="showMlDose()">💧 عرض الجرعة بالمل</button>
 
     <div id="result" class="result" style="display:none;"></div>
 
-    <h2>💊 قائمة الأدوية الشائعة</h2>
-    <table>
-      <tr>
-        <th>الاسم العلمي</th>
-        <th>الاسم التجاري</th>
-        <th>الجرعة المعتادة</th>
-        <th>ملاحظات</th>
-      </tr>
-      <tr>
-        <td>Paracetamol</td>
-        <td>سيتال، فيفادول، أدول</td>
-        <td>10–15 مجم/كجم كل 6–8 ساعات</td>
-        <td>الحد الأقصى اليومي: 60 مجم/كجم</td>
-      </tr>
-      <tr>
-        <td>Ibuprofen</td>
-        <td>بروفين، نيوروفين</td>
-        <td>5–10 مجم/كجم كل 6–8 ساعات</td>
-        <td>لا يستخدم تحت عمر 6 شهور</td>
-      </tr>
-      <tr>
-        <td>Azithromycin</td>
-        <td>زيثروماكس، أزيثرودار</td>
-        <td>10 مجم/كجم/يوم</td>
-        <td>لمدة 3 أيام فقط</td>
-      </tr>
-      <tr>
-        <td>Ceftriaxone</td>
-        <td>روسبين، سيفترياكس</td>
-        <td>50–100 مجم/كجم/يوم</td>
-        <td>لا يُخلط مع الكالسيوم</td>
-      </tr>
-      <tr>
-        <td>Ondansetron</td>
-        <td>زوفران</td>
-        <td>0.15 مجم/كجم</td>
-        <td>الحد الأقصى 8 مجم</td>
-      </tr>
-    </table>
+    <div class="signature">
+      تم بواسطة: د. عبدالوهاب عبد المنان الشيخ – طبيب طوارئ أطفال، طموح طبيب أسرة<br>
+      مطور تطبيق جرعتي<br>
+      المراجع العلمية: UpToDate , BMJ , AMBOSS , SAUDI GUIDELINES , MEDSCAPE
+    </div>
   </div>
 
   <script>
+    const drugs = [
+      { scientific: "Paracetamol", trade: "سيتال", dose: "10–15", unit: "مجم", interval: "كل 6–8 ساعات", max: 60, concentration: 120 },
+      { scientific: "Ibuprofen", trade: "بروفين", dose: "5–10", unit: "مجم", interval: "كل 6–8 ساعات", max: 40, concentration: 100 },
+      { scientific: "Azithromycin", trade: "زيثروماكس", dose: "10", unit: "مجم", interval: "مرة يومياً لمدة 3 أيام", max: 500, concentration: 200 },
+      { scientific: "Ceftriaxone", trade: "روسبين", dose: "50–100", unit: "مجم", interval: "مرة يومياً", max: 2000 },
+      { scientific: "Ondansetron", trade: "زوفران", dose: "0.15", unit: "مجم", interval: "عند اللزوم", max: 8, concentration: 2 }
+    ];
+
+    const select = document.getElementById("drug");
+    drugs.forEach((drug, i) => {
+      const option = document.createElement("option");
+      option.value = i;
+      option.textContent = `${drug.scientific} – ${drug.trade}`;
+      select.appendChild(option);
+    });
+
+    let currentDoseText = "";
+
     function calculateDose() {
       const weight = parseFloat(document.getElementById("weight").value);
-      const drug = document.getElementById("drug").value;
+      const drugIndex = document.getElementById("drug").value;
       const resultDiv = document.getElementById("result");
 
-      if (!weight || weight <= 0 || !drug) {
+      if (!weight || weight <= 0 || drugIndex === "") {
         resultDiv.style.display = "block";
         resultDiv.innerHTML = "❌ الرجاء إدخال وزن صحيح واختيار دواء.";
         return;
       }
 
-      let dose = '';
-      switch (drug) {
-        case 'paracetamol':
-          dose = `${(weight * 10).toFixed(1)} إلى ${(weight * 15).toFixed(1)} مجم كل 6–8 ساعات`;
-          break;
-        case 'ibuprofen':
-          dose = `${(weight * 5).toFixed(1)} إلى ${(weight * 10).toFixed(1)} مجم كل 6–8 ساعات`;
-          break;
-        case 'azithromycin':
-          dose = `${(weight * 10).toFixed(1)} مجم مرة يومياً لمدة 3 أيام`;
-          break;
-        case 'ceftriaxone':
-          dose = `${(weight * 50).toFixed(1)} إلى ${(weight * 100).toFixed(1)} مجم مرة يومياً`;
-          break;
-        case 'ondansetron':
-          dose = `${(weight * 0.15).toFixed(2)} مجم (الحد الأقصى 8 مجم)`;
-          break;
-        default:
-          dose = "❌ الدواء غير معروف.";
+      const d = drugs[drugIndex];
+      let doseText = "";
+      let range = d.dose.split("–");
+
+      if (range.length === 2) {
+        const min = (parseFloat(range[0]) * weight).toFixed(1);
+        const max = (parseFloat(range[1]) * weight).toFixed(1);
+        doseText = `${min} – ${max} ${d.unit} ${d.interval}`;
+      } else {
+        const amount = (parseFloat(range[0]) * weight).toFixed(1);
+        doseText = `${amount} ${d.unit} ${d.interval}`;
       }
 
+      doseText += `<br>⚠️ الحد الأقصى للجرعة اليومية: ${d.max} ${d.unit}`;
+
+      currentDoseText = doseText.replace(/<br>/g, "\n"); // for copying
+      resultDiv.innerHTML = `✅ الجرعة المحسوبة:<br><strong>${doseText}</strong>`;
       resultDiv.style.display = "block";
-      resultDiv.innerHTML = `✅ الجرعة المحسوبة: <br><strong>${dose}</strong>`;
+    }
+
+    function copyDose() {
+      if (currentDoseText) {
+        navigator.clipboard.writeText(currentDoseText);
+        alert("✅ تم نسخ الجرعة إلى الحافظة");
+      } else {
+        alert("❗ الرجاء حساب الجرعة أولاً");
+      }
+    }
+
+    function showMlDose() {
+      const weight = parseFloat(document.getElementById("weight").value);
+      const drugIndex = document.getElementById("drug").value;
+      if (!weight || drugIndex === "") {
+        alert("❗ الرجاء إدخال الوزن واختيار دواء");
+        return;
+      }
+
+      const d = drugs[drugIndex];
+      if (!d.concentration) {
+        alert("⚠️ لا يتوفر تركيز لهذا الدواء");
+        return;
+      }
+
+      let range = d.dose.split("–");
+      const ml = val => (val * weight / d.concentration).toFixed(2);
+
+      if (range.length === 2) {
+        const minMl = ml(parseFloat(range[0]));
+        const maxMl = ml(parseFloat(range[1]));
+        alert(`💧 الجرعة بالمل:\n${minMl} – ${maxMl} مل`);
+      } else {
+        const amountMl = ml(parseFloat(range[0]));
+        alert(`💧 الجرعة بالمل:\n${amountMl} مل`);
+      }
     }
   </script>
 </body>
