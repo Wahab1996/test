@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.85">
+<title>PRAM Score Calculator</title>
+<style>
+body {
+  font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background-color: #004080;
+  color: white;
+  padding: 15px;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.container {
+  max-width: 700px;
+  margin: 30px auto;
+  background: white;
+  padding: 20px 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+h2 {
+  color: #004080;
+  margin-top: 0;
+}
+label {
+  font-weight: 500;
+}
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 20px;
+  font-size: 1rem;
+}
+button {
+  background-color: #004080;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  cursor: pointer;
+  font-size: 1rem;
+  border-radius: 4px;
+  margin-right: 10px;
+}
+button:hover {
+  background-color: #00264d;
+}
+.result {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 4px;
+  font-size: 1.1rem;
+}
+.result.mild { background: #e6f7e6; border-left: 5px solid #28a745; }
+.result.moderate { background: #fff3cd; border-left: 5px solid #ffc107; }
+.result.severe { background: #f8d7da; border-left: 5px solid #dc3545; }
+.references {
+  margin-top: 30px;
+  font-size: 0.9rem;
+  color: #555;
+}
+</style>
+</head>
+<body>
+
+<header>PRAM Score Calculator</header>
+
+<div class="container">
+  <h2>Pediatric Respiratory Assessment Measure (PRAM)</h2>
+  <p><strong>Instructions:</strong> Select the clinical findings below to calculate the severity of asthma exacerbation.</p>
+
+  <label>Suprasternal Retractions:</label>
+  <select id="suprasternal">
+    <option value="0">Absent (0)</option>
+    <option value="2">Present (2)</option>
+  </select>
+
+  <label>Scalene Muscle Contraction:</label>
+  <select id="scalene">
+    <option value="0">Absent (0)</option>
+    <option value="2">Present (2)</option>
+  </select>
+
+  <label>Air Entry:</label>
+  <select id="air">
+    <option value="0">Normal (0)</option>
+    <option value="1">Decreased at bases (1)</option>
+    <option value="2">Widespread decreased (2)</option>
+    <option value="3">Minimal or absent (3)</option>
+  </select>
+
+  <label>Wheezing:</label>
+  <select id="wheezing">
+    <option value="0">Absent (0)</option>
+    <option value="1">Expiratory only (1)</option>
+    <option value="2">Inspiratory + Expiratory (2)</option>
+    <option value="3">Audible without stethoscope or silent chest (3)</option>
+  </select>
+
+  <label>Oxygen Saturation:</label>
+  <select id="spo2">
+    <option value="0">≥ 95% (0)</option>
+    <option value="1">92–94% (1)</option>
+    <option value="2">≤ 91% (2)</option>
+  </select>
+
+  <button onclick="calculatePRAM()">Calculate</button>
+  <button onclick="resetForm()">Reset</button>
+
+  <div id="result" class="result" style="display:none;"></div>
+
+  <div class="references">
+    <strong>References:</strong><br>
+    - Canadian Paediatric Society. Asthma guidelines.<br>
+    - UpToDate: <em>Assessment of acute asthma severity in children.</em><br>
+    - Ducharme FM et al., Pediatrics. 2008;121(4):e739-45.
+  </div>
+</div>
+
+<script>
+function calculatePRAM() {
+  const suprasternal = parseInt(document.getElementById('suprasternal').value);
+  const scalene = parseInt(document.getElementById('scalene').value);
+  const air = parseInt(document.getElementById('air').value);
+  const wheezing = parseInt(document.getElementById('wheezing').value);
+  const spo2 = parseInt(document.getElementById('spo2').value);
+
+  const total = suprasternal + scalene + air + wheezing + spo2;
+
+  const resultDiv = document.getElementById('result');
+  resultDiv.style.display = 'block';
+
+  let severity = '';
+  resultDiv.className = 'result';
+
+  if (total <= 3) {
+    severity = 'Mild Asthma Exacerbation';
+    resultDiv.classList.add('mild');
+  } else if (total <= 7) {
+    severity = 'Moderate Asthma Exacerbation';
+    resultDiv.classList.add('moderate');
+  } else {
+    severity = 'Severe Asthma Exacerbation';
+    resultDiv.classList.add('severe');
+  }
+
+  resultDiv.innerHTML =
+    `<strong>PRAM Score: ${total}</strong><br>${severity}`;
+}
+
+function resetForm() {
+  document.getElementById('suprasternal').value = 0;
+  document.getElementById('scalene').value = 0;
+  document.getElementById('air').value = 0;
+  document.getElementById('wheezing').value = 0;
+  document.getElementById('spo2').value = 0;
+  document.getElementById('result').style.display = 'none';
+}
+</script>
+
+</body>
+</html>

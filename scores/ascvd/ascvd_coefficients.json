@@ -1,0 +1,46 @@
+{
+  "male_white": {
+    "lnAge": 12.344,
+    "lnTC": 11.853,
+    "lnHDL": -7.990,
+    "lnSBP_Treated": 1.797,
+    "lnSBP_Untreated": 1.764,
+    "smoker": 7.837,
+    "diabetes": 0.658,
+    "baseline": 0.9144,
+    "mean": 61.18
+  },
+  "female_white": {
+    "lnAge": -29.799,
+    "lnTC": 13.540,
+    "lnHDL": -13.578,
+    "lnSBP_Treated": 2.019,
+    "lnSBP_Untreated": 1.957,
+    "smoker": 7.574,
+    "diabetes": 0.661,
+    "baseline": 0.9665,
+    "mean": -29.18
+  },
+  "male_african_american": {
+    "lnAge": 2.469,
+    "lnTC": 0.302,
+    "lnHDL": -0.307,
+    "lnSBP_Treated": 1.916,
+    "lnSBP_Untreated": 1.809,
+    "smoker": 0.549,
+    "diabetes": 0.645,
+    "baseline": 0.8954,
+    "mean": 19.54
+  },
+  "female_african_american": {
+    "lnAge": 17.114,
+    "lnTC": 0.940,
+    "lnHDL": -18.920,
+    "lnSBP_Treated": 29.291,
+    "lnSBP_Untreated": 27.820,
+    "smoker": 0.691,
+    "diabetes": 0.874,
+    "baseline": 0.9533,
+    "mean": 86.61
+  }
+}

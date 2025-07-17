@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<title>الجدول الوطني للتطعيمات - السعودية</title>
+<style>
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  direction: rtl;
+  background: linear-gradient(135deg, #e0f7fa, #f4f9ff);
+  margin: 0;
+  padding: 20px;
+  text-align: center;
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h1 {
+  color: #004080;
+  margin-bottom: 10px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+}
+th, td {
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+th {
+  background-color: #004080;
+  color: #fff;
+}
+td {
+  background-color: #f9f9f9;
+}
+input {
+  padding: 8px;
+  width: 150px;
+  margin: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+button {
+  padding: 12px 24px;
+  background-color: #004080;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+button:hover {
+  background-color: #003366;
+}
+#result {
+  margin-top: 20px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #006600;
+}
+.reference {
+  margin-top: 30px;
+  font-size: 14px;
+  color: #555;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+<h1>الجدول الوطني للتطعيمات للأطفال – السعودية</h1>
+
+<table>
+<tr><th>العمر</th><th>التطعيمات</th></tr>
+<tr><td>عند الولادة</td><td>HepB (الكبدي ب)</td></tr>
+<tr><td>شهرين</td><td>HepB + Rota Virus + DTaP + Hib + PCV + IPV</td></tr>
+<tr><td>4 أشهر</td><td>HepB + Rota Virus + DTaP + Hib + PCV + IPV</td></tr>
+<tr><td>6 أشهر</td><td> BCG (السل) + HepB + Rota Virus + DTaP + Hib + PCV + IPV + OPV </td></tr>
+<tr><td>9 أشهر</td><td>Measles + MCV4</td></tr>
+<tr><td>12 شهرًا</td><td>PCV + OPV + MCV4 + MMR</td></tr>
+<tr><td>18 شهرًا</td><td>DTaP + Hib + OPV + HepA + Varicella + MMR</td></tr>
+<tr><td>24 شهرًا</td><td>HepA (الجرعة الثانية)</td></tr>
+<tr><td>4–6 سنوات</td><td>DTaP + OPV + Varicella + MMR</td></tr>
+<tr><td>11 سنة</td><td>Tdap + HPV (للفتيات)</td></tr>
+<tr><td>12 سنة</td><td>HPV (الجرعة الثانية للفتيات)</td></tr>
+<tr><td>18 سنة</td><td>MCV4 (معززة)</td></tr>
+</table>
+
+<h2>🔍 تحقق حسب العمر (بالشهور أو السنوات)</h2>
+<input type="number" id="months" placeholder="العمر بالشهور">
+<input type="number" id="years" placeholder="العمر بالسنوات">
+<br>
+<button onclick="check()">تحقق</button>
+
+<div id="result"></div>
+
+<p class="reference">
+المصدر: <strong>وزارة الصحة السعودية – الجدول الوطني للتطعيمات (ديسمبر 2019)</strong><br>
+<a href="https://www.moh.gov.sa/en/HealthAwareness/EducationalContent/HealthTips/Documents/Immunization-Schedule.pdf" target="_blank">
+اضغط هنا لعرض الملف الرسمي</a>.
+</p>
+</div>
+
+<script>
+function check(){
+  const monthsInput = parseInt(document.getElementById('months').value);
+  const yearsInput = parseInt(document.getElementById('years').value);
+  const r = document.getElementById('result');
+  r.textContent = '';
+
+  let a = NaN;
+
+  if (!isNaN(monthsInput) && monthsInput >= 0) {
+    a = monthsInput;
+  } else if (!isNaN(yearsInput) && yearsInput >= 0) {
+    a = yearsInput * 12;
+  }
+
+  if (isNaN(a)) {
+    r.textContent = '❌ أدخل العمر بالشهور أو السنوات بشكل صحيح.';
+    return;
+  }
+
+  let t = '';
+  if(a===0) t='HepB';
+  else if(a===2) t='HepB + Rota Virus + DTaP + Hib + PCV + IPV';
+  else if(a===4) t='HepB + Rota Virus + DTaP + Hib + PCV + IPV';
+  else if(a===6) t='BCG + HepB + Rota Virus + DTaP + Hib + PCV + IPV + OPV';
+  else if(a===9) t='Measles + MCV4';
+  else if(a===12) t='PCV + OPV + MCV4 + MMR';
+  else if(a===18) t='DTaP + Hib + OPV + HepA + Varicella + MMR';
+  else if(a===24) t='HepA (الجرعة الثانية)';
+  else if(a>=48 && a<=72) t='DTaP + OPV + Varicella + MMR';
+  else if(a>=132 && a<144) t='Tdap + HPV (للفتيات)';
+  else if(a>=144 && a<180) t='HPV (الجرعة الثانية للفتيات)';
+  else if(a>=216 && a<240) t='MCV4 (معززة)';
+
+  if(t) {
+    r.textContent='🩺 التطعيمات المطلوبة: ' + t;
+  } else {
+    r.textContent='❌ لا توجد تطعيمات مقررة لهذا العمر حسب الجدول الوطني.';
+  }
+}
+</script>
+
+</body>
+</html>

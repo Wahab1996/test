@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=0.85"/>
+<title>Centor Score – Strep Pharyngitis</title>
+<link rel="stylesheet" href="../assets/css/style.css" />
+<style>
+header {
+  text-align: center;
+  padding: 1em;
+  background: #004080;
+  color: white;
+}
+main {
+  padding: 2em;
+  max-width: 600px;
+  margin: auto;
+}
+.question {
+  margin-bottom: 1em;
+  padding: 0.5em;
+  background: #f9f9f9;
+  border-radius: 6px;
+}
+.hint {
+  font-size: 0.85em;
+  color: #666;
+  margin-top: 4px;
+}
+button {
+  padding: 10px 15px;
+  font-size: 16px;
+  background: #004080;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+button:hover {
+  background: #003366;
+}
+.result {
+  margin-top: 2em;
+  padding: 1em;
+  background: #e8f4ff;
+  color: #000;
+  border-left: 6px solid #004080;
+  border-radius: 10px;
+  display: none;
+  font-size: 1em;
+}
+.result .icon {
+  font-size: 2em;
+  margin-right: 10px;
+  vertical-align: middle;
+  color: #004080;
+}
+footer {
+  margin-top: 3em;
+  text-align: center;
+  font-size: 0.8em;
+  color: #666;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 Centor Score – Strep Pharyngitis</h1>
+</header>
+
+<main>
+  <form id="centor-form">
+    <div class="question">
+      <label><input type="checkbox" name="fever" /> Fever (Temp > 38°C)</label>
+    </div>
+    <div class="question">
+      <label><input type="checkbox" name="no_cough" /> Absence of Cough</label>
+    </div>
+    <div class="question">
+      <label><input type="checkbox" name="tender_nodes" /> Tender/swollen anterior cervical nodes</label>
+    </div>
+    <div class="question">
+      <label><input type="checkbox" name="tonsillar_exudate" /> Tonsillar swelling or exudates</label>
+    </div>
+    <div class="question">
+      <label>Age:</label><br>
+      <select name="age">
+        <option value="1">3–14 years (+1)</option>
+        <option value="0">15–44 years (0)</option>
+        <option value="-1">45+ years (–1)</option>
+      </select>
+      <div class="hint">⚠️ Centor Score is only applicable for patients ≥3 years of age.</div>
+    </div>
+    <button type="button" onclick="calculateCentor()">Calculate Score</button>
+  </form>
+
+  <div id="result" class="result">
+    <span class="icon">🩺</span><span id="result-text"></span>
+  </div>
+</main>
+
+<footer>
+  © 2025 Dr. Abdulwahab Abdulmannan AlSheikh – All rights reserved
+</footer>
+
+<script>
+function calculateCentor() {
+  const form = document.getElementById('centor-form');
+  let score = 0;
+
+  if (form.fever.checked) score += 1;
+  if (form.no_cough.checked) score += 1;
+  if (form.tender_nodes.checked) score += 1;
+  if (form.tonsillar_exudate.checked) score += 1;
+  score += parseInt(form.age.value);
+
+  let interpretation = "";
+  if (score <= 1) interpretation = "Low risk – No antibiotic or testing needed";
+  else if (score === 2) interpretation = "Moderate risk – Consider RADT or throat culture";
+  else if (score >= 3) interpretation = "High risk – Consider empirical antibiotics or testing";
+
+  const resultDiv = document.getElementById("result");
+  const resultText = document.getElementById("result-text");
+  resultText.innerHTML = `<strong>Total Score: ${score}</strong><br>${interpretation}`;
+  resultDiv.style.display = "block";
+}
+</script>
+</body>
+</html>

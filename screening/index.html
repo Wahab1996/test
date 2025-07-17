@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.70">
+<title>Screening in Family Medicine - Saudi Arabia</title>
+<style>
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: #eef2f7;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+h1 {
+  text-align: center;
+  color: #004080;
+  margin: 20px 10px;
+  font-size: 1.8em;
+}
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+.card-title {
+  font-weight: bold;
+  font-size: 1.1em;
+  color: #004080;
+  margin-bottom: 10px;
+}
+.card-content {
+  display: none;
+  font-size: 0.95em;
+  color: #555;
+  margin-top: 5px;
+}
+.note {
+  font-size: 0.8em;
+  color: #888;
+  margin-top: 8px;
+}
+.back-link {
+  display: block;
+  text-align: center;
+  margin: 30px 0 10px;
+  color: #004080;
+  text-decoration: none;
+  font-size: 0.9em;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+</style>
+</head>
+<body>
+
+<h1>Screening Guidelines – Saudi Arabia</h1>
+
+<div class="container">
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Breast Cancer</div>
+  <div class="card-content">
+    Women 40–74: Mammography every 1–2 years. Earlier if family history. Stop if life expectancy &lt;10 yrs.
+    <div class="note">USPSTF 2024, MOH</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Cervical Cancer</div>
+  <div class="card-content">
+    Women 21–29: Pap every 3 yrs. Women 30–65: Pap+HPV every 5 yrs. Stop after 65 if adequate.
+    <div class="note">USPSTF 2023</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Colorectal Cancer</div>
+  <div class="card-content">
+    Adults 45–75: Annual FIT or colonoscopy every 10 yrs. Continue to 85 selectively.
+    <div class="note">USPSTF 2021</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Diabetes Mellitus (Type 2)</div>
+  <div class="card-content">
+    Adults ≥35 or ≥18 if risk factors. Repeat every 3 yrs if normal.
+    <div class="note">USPSTF 2021, MOH</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Hypertension</div>
+  <div class="card-content">
+    Adults ≥18: Check BP at least every 1–2 yrs if normal.
+    <div class="note">USPSTF, ACC/AHA</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Dyslipidemia</div>
+  <div class="card-content">
+    Men ≥35, women ≥45: Lipid panel every 5 yrs. Earlier if risk factors.
+    <div class="note">USPSTF</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Obesity</div>
+  <div class="card-content">
+    All ≥6 yrs: Screen using BMI. Counsel if BMI ≥25.
+    <div class="note">USPSTF, WHO</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Hepatitis B & C</div>
+  <div class="card-content">
+    HBV: High risk. HCV: Once for adults 18–79, earlier if risk.
+    <div class="note">CDC, USPSTF 2020</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Tuberculosis</div>
+  <div class="card-content">
+    Screen high-risk using TST or IGRA.
+    <div class="note">WHO, MOH</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Depression & Anxiety</div>
+  <div class="card-content">
+    All ≥12 yrs: PHQ-9 & GAD-7 annually.
+    <div class="note">USPSTF, MOH</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Smoking & Substance Use</div>
+  <div class="card-content">
+    Ask all ≥12 yrs. Counsel and support cessation.
+    <div class="note">USPSTF, WHO</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Premarital Screening</div>
+  <div class="card-content">
+    Mandatory before marriage: hemoglobinopathies, HBV, HCV, HIV.
+    <div class="note">MOH Saudi Program</div>
+  </div>
+</div>
+
+<div class="card" onclick="toggleCard(this)">
+  <div class="card-title">Osteoporosis</div>
+  <div class="card-content">
+    Women ≥65: DEXA. Younger if risk ≥9.3%. Men if risk factors.
+    <div class="note">USPSTF 2018</div>
+  </div>
+</div>
+
+</div>
+
+<a class="back-link" href="../index.html">&larr; Back to Home</a>
+
+<script>
+function toggleCard(card) {
+  const content = card.querySelector(".card-content");
+  content.style.display = (content.style.display === "block") ? "none" : "block";
+}
+</script>
+
+</body>
+</html>

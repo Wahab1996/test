@@ -1,0 +1,56 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Developer Notes – ASCVD & Scores</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; padding: 2em; background: #f9f9f9; color: #333; line-height: 1.7; }
+    h1 { color: #004080; }
+    code, pre { background: #eee; padding: 0.3em 0.6em; border-radius: 4px; }
+    .section { margin-bottom: 2em; }
+  </style>
+</head>
+<body>
+  <h1>📘 Developer Notes – ASCVD Risk & Scores</h1>
+
+  <div class="section">
+    <h2>📌 Purpose</h2>
+    <p>This page explains how to modify or update calculation logic for interactive medical scores such as the ASCVD Risk Calculator.</p>
+  </div>
+
+  <div class="section">
+    <h2>🧮 How ASCVD Calculator Works</h2>
+    <p>The ASCVD calculator uses an external JSON file to load coefficients (weights) for various risk factors.</p>
+    <p><strong>File location:</strong> <code>/scores/ascvd_coefficients.json</code></p>
+  </div>
+
+  <div class="section">
+    <h2>🛠 How to Edit the Coefficients</h2>
+    <ol>
+      <li>Open the file <code>ascvd_coefficients.json</code> using any text editor.</li>
+      <li>Edit the values for different risk groups (male, female, smoker, etc.).</li>
+      <li>Save and refresh your browser. No need to modify HTML or JavaScript.</li>
+    </ol>
+  </div>
+
+  <div class="section">
+    <h2>📂 File Structure Summary</h2>
+    <ul>
+      <li><code>/scores/ascvd_risk_with_json.html</code> – the calculator interface</li>
+      <li><code>/scores/ascvd_coefficients.json</code> – all the math data</li>
+      <li><code>/assets/js/theme-toggle.js</code> – handles light/dark mode</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>🤝 Maintainer</h2>
+    <p>Developed by <strong>Dr. Abdulwahab Abdulmannan AlSheikh</strong><br>
+    For feedback or expansion, contact via GitHub or email.</p>
+  </div>
+
+  <footer style="margin-top: 3em; text-align: center; font-size: 0.85em; color: #888;">
+    &copy; 2025 Dr. Abdulwahab Abdulmannan AlSheikh – All rights reserved.
+  </footer>
+</body>
+</html>

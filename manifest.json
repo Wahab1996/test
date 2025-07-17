@@ -1,0 +1,21 @@
+{
+    "name": "FM Tools \u2013 Family Medicine Companion",
+    "short_name": "FM Tools",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#007BFF",
+    "description": "Quick access to family medicine tools, calculators, guidelines, and references.",
+    "icons": [
+        {
+            "src": "assets/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "assets/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

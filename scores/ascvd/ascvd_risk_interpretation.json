@@ -1,0 +1,22 @@
+[
+  {
+    "min": 0,
+    "max": 5,
+    "label": "Low risk: Lifestyle modification recommended."
+  },
+  {
+    "min": 5,
+    "max": 7.5,
+    "label": "Borderline risk: Consider discussion of risk factors."
+  },
+  {
+    "min": 7.5,
+    "max": 20,
+    "label": "Intermediate risk: Consider moderate- to high-intensity statins."
+  },
+  {
+    "min": 20,
+    "max": 100,
+    "label": "High risk: Strongly consider high-intensity statins."
+  }
+]

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=0.85, maximum-scale=1.0, user-scalable=no">
+<title>Paracetamol Overdose Risk Calculator</title>
+<style>
+body {
+  font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+  background: #f9fafc;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+header {
+  background-color: #005c99;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  font-size: 1.5rem;
+  letter-spacing: 0.5px;
+}
+.container {
+  max-width: 700px;
+  margin: 30px auto;
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+h2 {
+  text-align: center;
+  color: #005c99;
+  font-size: 1.3rem;
+  margin-bottom: 20px;
+}
+label {
+  display: block;
+  margin-top: 15px;
+  font-weight: 500;
+}
+input {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 15px;
+}
+button {
+  background: #005c99;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  margin-top: 20px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+button:hover {
+  background: #004777;
+}
+.result, .algorithm {
+  margin-top: 20px;
+  padding: 15px;
+  border-left: 5px solid #ccc;
+  background: #f5f7fa;
+  font-size: 15px;
+}
+.result strong, .algorithm strong {
+  color: #005c99;
+}
+footer {
+  text-align: center;
+  padding: 10px;
+  font-size: 0.9rem;
+  color: #777;
+  margin-top: 40px;
+}
+a {
+  color: #005c99;
+  text-decoration: none;
+}
+</style>
+</head>
+<body>
+
+<header>Paracetamol Overdose Risk Calculator</header>
+
+<div class="container">
+  
+  <label>Patient Weight (kg):</label>
+  <input type="number" id="weight" placeholder="e.g. 13">
+  
+  <label>Amount Ingested (mL):</label>
+  <input type="number" id="volume" placeholder="e.g. 100">
+  
+  <label>Concentration (mg per 5 mL):</label>
+  <input type="number" id="concentration" value="120">
+  
+  <button onclick="calculate()">Calculate</button>
+  
+  <div id="result" class="result"></div>
+  <div id="algorithm" class="algorithm"></div>
+</div>
+
+<footer>
+© 2025 | Based on UpToDate & Amboss Guidelines | <a href="https://acetadote.com/New_Acetadote_Labeling_25OCT2019.pdf" target="_blank">View Full NAC Dosing Chart</a>
+</footer>
+
+<script>
+function calculate() {
+  const weight = parseFloat(document.getElementById('weight').value);
+  const volume = parseFloat(document.getElementById('volume').value);
+  const concentration = parseFloat(document.getElementById('concentration').value);
+
+  if (!weight || !volume || !concentration) {
+    document.getElementById('result').innerHTML = "⚠️ Please fill in all fields.";
+    document.getElementById('algorithm').innerHTML = "";
+    return;
+  }
+
+  const totalDoseMg = (volume / 5) * concentration;
+  const dosePerKg = totalDoseMg / weight;
+
+  let message = `<strong>Total ingested:</strong> ${totalDoseMg.toFixed(1)} mg<br>`;
+  message += `<strong>Per kg:</strong> ${dosePerKg.toFixed(1)} mg/kg<br>`;
+
+  let algo = `<strong>Recommended Approach:</strong><br>`;
+
+  if (dosePerKg >= 150) {
+    message += `<span style="color:red;">⚠️ Above Toxic Does (150 mg/kg). Immediate medical evaluation required.</span>`;
+    algo += `
+    • Confirm ingestion time.<br>
+    • If <strong>≤4 hours</strong>: wait until 4 hours post-ingestion to draw serum paracetamol level.<br>
+    • If level above treatment line on Rumack–Matthew nomogram → start <strong>N-acetylcysteine (NAC)</strong>.<br>
+    • If >8 hours: start NAC immediately while awaiting results.<br>
+    • Monitor LFTs, INR, creatinine, glucose.<br>
+    • Admit if signs of liver injury or high risk.<br>`;
+  } else {
+    message += `<span style="color:green;">✅ Below Toxic Does. Monitor and consult as needed.</span>`;
+    algo += `
+    • Observe clinically.<br>
+    • Assess risk factors (malnutrition, liver disease, alcohol use).<br>
+    • If risk factors present or history uncertain → consider NAC.<br>
+    • Provide education and follow-up.`;
+  }
+
+  document.getElementById('result').innerHTML = message;
+  document.getElementById('algorithm').innerHTML = algo;
+}
+</script>
+
+</body>
+</html>

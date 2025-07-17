@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=0.55"/>
+  <title>مقياس PHQ-9 للاكتئاب</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <script src="../assets/js/theme-toggle.js" defer></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: var(--background);
+      color: var(--text);
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    body.dark-mode {
+      --background: #121212;
+      --text: #f1f1f1;
+    }
+
+    body:not(.dark-mode) {
+      --background: #f9f9f9;
+      --text: #000000;
+    }
+
+    header {
+      background-color: #004080;
+      color: white;
+      padding: 1em;
+      text-align: center;
+      position: relative;
+    }
+
+    #theme-toggle {
+      position: absolute;
+      top: 1em;
+      left: 1em;
+      padding: 0.4em 0.8em;
+      border: none;
+      border-radius: 5px;
+      background-color: #ffffff33;
+      color: white;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 800px;
+      margin: 2em auto;
+      padding: 1em;
+      background-color: var(--card-bg, #ffffff);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    .question {
+      margin-bottom: 1.5em;
+    }
+
+    .question label {
+      display: block;
+      margin-bottom: 0.5em;
+      font-weight: bold;
+    }
+
+    select {
+      width: 100%;
+      padding: 0.5em;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+    }
+
+    button[type="button"] {
+      margin-top: 1em;
+      background-color: #004080;
+      color: white;
+      padding: 0.6em 1.2em;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .result {
+      margin-top: 2em;
+      padding: 1em;
+      background: #f0f0f0;
+      color: #000;
+      border-radius: 10px;
+      text-align: left;
+      direction: ltr;
+      font-size: 1.1em;
+    }
+
+    body.dark-mode .result {
+      background: #333;
+      color: #fff;
+    }
+
+    footer {
+      margin-top: 3em;
+      text-align: center;
+      font-size: 0.8em;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧠 مقياس PHQ-9 للاكتئاب</h1>
+    <button id="theme-toggle">🌓</button>
+  </header>
+
+  <main>
+    <form id="phq9-form">
+      
+    <div class="question">
+      <label>1. قلة الاهتمام أو الاستمتاع بالقيام بالأشياء</label>
+      <select name="q1">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+    <div class="question">
+      <label>2. الشعور بالحزن أو الاكتئاب أو اليأس</label>
+      <select name="q2">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+    <div class="question">
+      <label>3. صعوبة في النوم أو النوم كثيرًا</label>
+      <select name="q3">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+    <div class="question">
+      <label>4. الشعور بالتعب أو قلة الطاقة</label>
+      <select name="q4">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+    <div class="question">
+      <label>5. فقدان الشهية أو الأكل الزائد</label>
+      <select name="q5">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+    <div class="question">
+      <label>6. الشعور بسوء عن نفسك أو أنك فاشل</label>
+      <select name="q6">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+    <div class="question">
+      <label>7. صعوبة في التركيز</label>
+      <select name="q7">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+    <div class="question">
+      <label>8. الحركة أو الكلام ببطء لدرجة ملاحظة الآخرين</label>
+      <select name="q8">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+    <div class="question">
+      <label>9. التفكير في أن الموت سيكون أفضل أو إيذاء النفس</label>
+      <select name="q9">
+        <option value="0">أبدًا</option>
+        <option value="1">عدة أيام</option>
+        <option value="2">أكثر من نصف الأيام</option>
+        <option value="3">تقريبًا كل يوم</option>
+      </select>
+    </div>
+    
+      <button type="button" onclick="calculatePHQ9()">احسب النتيجة</button>
+    </form>
+    <div id="result" class="result" style="display: none;"></div>
+  </main>
+
+  <footer>
+    © 2025 د. عبدالوهاب عبد المنان الشيخ – جميع الحقوق محفوظة
+  </footer>
+
+  <script>
+    function calculatePHQ9() {
+      const form = document.getElementById('phq9-form');
+      const data = new FormData(form);
+      let score = 0;
+      for (let pair of data.entries()) {
+        score += parseInt(pair[1]);
+      }
+
+      let interpretation = "";
+      if (score <= 4) interpretation = "Minimal or no depression";
+      else if (score <= 9) interpretation = "Mild depression";
+      else if (score <= 14) interpretation = "Moderate depression";
+      else if (score <= 19) interpretation = "Moderately severe depression";
+      else interpretation = "Severe depression";
+
+      const resultDiv = document.getElementById('result');
+      resultDiv.innerHTML = `<strong>📊 Total Score: ${score}</strong><br>${interpretation}`;
+      resultDiv.style.display = "block";
+    }
+  </script>
+</body>
+</html>

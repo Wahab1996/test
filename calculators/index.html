@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=0.6"/>
+<title>📊 Medical Calculators</title>
+<link rel="stylesheet" href="../assets/css/style.css" />
+<script src="../assets/js/theme-toggle.js" defer></script>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color, #f0f0f0);
+  color: var(--text-color, #333);
+  transition: background-color 0.3s, color 0.3s;
+}
+header {
+  background-color: var(--header-bg, #004080);
+  color: white;
+  padding: 1em;
+  text-align: center;
+  position: relative;
+}
+#theme-toggle {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background-color: #fff;
+  color: #004080;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+main {
+  padding: 2em;
+  text-align: center;
+}
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5em;
+  margin-top: 2em;
+}
+.card {
+  background-color: var(--card-bg, #ffffff);
+  color: inherit;
+  padding: 1em;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s, background-color 0.3s;
+}
+.card:hover {
+  transform: translateY(-5px);
+  background-color: var(--card-hover, #e0f0ff);
+}
+:root {
+  --bg-color: #f0f0f0;
+  --text-color: #333;
+  --header-bg: #004080;
+  --card-bg: #fff;
+  --card-hover: #e0f0ff;
+}
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: #eee;
+  --header-bg: #1e1e1e;
+  --card-bg: #1e1e1e;
+  --card-hover: #2a2a2a;
+}
+</style>
+</head>
+<body>
+<header>
+  <h1>📊 Medical Calculators</h1>
+  <button id="theme-toggle">🌓</button>
+</header>
+<main>
+  <p>Choose a calculator:</p>
+  <section class="cards">
+    <a href="rabies.html" class="card">Rabies Vaccination Schedule Creator</a>
+    <a href="tetanus.html" class="card">Tetanus Risk Assessment</a>
+    <a href="SAvaccinations.html" class="card">Saudi Vaccinations Checker</a>
+    <a href="bmi.html" class="card">BMI Calculator</a>
+    <a href="Paracetamol_toxicity.html" class="card">Paracetamol Overdose Risk Assessment</a>
+    <a href="PRAM.html" class="card">PRAM Score Calculator</a>
+  </section>
+</main>
+<footer style="position: fixed; bottom: 0; left: 0; width: 100%; background-color: #1a237e; color: white; text-align: center; padding: 10px 0; font-size: 0.8em;">
+© 2025 Dr. Abdulwahab Abdulmannan AlSheikh – All rights reserved
+</footer>
+</body>
+</html>

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=0.75">
+<title>Family Medicine Algorithms</title>
+<style>
+  body {
+    background-color: #f0f4f8;
+    color: #111;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #0077b6;
+    padding: 30px 20px;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+  }
+  header h1 {
+    color: white;
+    margin: 0;
+    font-size: 28px;
+  }
+  .container {
+    padding: 30px 20px;
+    max-width: 900px;
+    margin: auto;
+  }
+  .accordion {
+    background-color: #ffffff;
+    color: #000;
+    cursor: pointer;
+    padding: 22px;
+    width: 100%;
+    text-align: center;
+    border: none;
+    outline: none;
+    font-size: 17px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+  }
+  .active {
+    background-color: #e0e0e0;
+  }
+  .panel {
+    display: none;
+    background-color: #ffffff;
+    color: #111;
+    padding: 20px;
+    font-size: 16px;
+    line-height: 1.7;
+    border-radius: 0 0 8px 8px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+  }
+  .panel strong { color: #000; }
+  .note {
+    color: #555;
+    font-style: italic;
+  }
+  .dark-mode {
+    background-color: #111 !important;
+    color: #f1f1f1 !important;
+  }
+  .dark-mode header {
+    background-color: #000 !important;
+    color: #d4af37 !important;
+  }
+  .dark-mode .accordion,
+  .dark-mode .panel {
+    background-color: #1e1e1e !important;
+    color: #f1f1f1 !important;
+    border: 1px solid #333 !important;
+  }
+  .dark-mode .accordion {
+    text-align: center;
+  }
+  .dark-mode .panel strong {
+    color: #fff !important;
+  }
+  .dark-mode .note {
+    color: #ccc !important;
+  }
+  .theme-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #0077b6;
+    color: white;
+    border: none;
+    border-radius: 20px;
+    padding: 10px 16px;
+    cursor: pointer;
+    font-size: 16px;
+    z-index: 9999;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  }
+</style>
+</head>
+<body>
+<header>
+  <h1>📋 Family Medicine Algorithms</h1>
+</header>
+<div class="container">
+
+    <button class="accordion">1. Hypertension Management 💊</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Diagnosis:</strong><br/>
+          • Confirm BP ≥140/90 mmHg on ≥2 occasions, at least 1 week apart.<br/>
+          • Use ambulatory or home BP monitoring if white coat suspected.
+        </li>
+        <li><strong>2. Risk Stratification:</strong><br/>
+          • Evaluate CV risk (lipids, diabetes, smoking).<br/>
+          • Check for TOD: ECG, creatinine/eGFR, urinalysis, fundoscopy.
+        </li>
+        <li><strong>3. Lifestyle Modifications (for all):</strong><br/>
+          • Reduce salt (<2.3g/day), DASH diet, physical activity (30 min/day), weight loss, smoking cessation.
+        </li>
+        <li><strong>4. Initiate Pharmacotherapy:</strong><br/>
+          • Start if BP ≥160/100, or ≥140/90 + diabetes/CKD/CVD risk.<br/>
+          • First-line options:<br/>
+          &nbsp;&nbsp;– ACEi: Lisinopril 10–40 mg once daily<br/>
+          &nbsp;&nbsp;– ARB: Losartan 50–100 mg once daily<br/>
+          &nbsp;&nbsp;– CCB: Amlodipine 5–10 mg once daily<br/>
+          &nbsp;&nbsp;– Thiazide: Hydrochlorothiazide 12.5–25 mg daily
+        </li>
+        <li><strong>5. Follow-Up:</strong><br/>
+          • Recheck in 2–4 weeks. Titrate dose or add second agent.<br/>
+          • Check labs (K⁺, Cr) within 2–4 weeks if on ACEi/ARB or diuretic.
+        </li>
+        <li><strong>6. Treatment Targets:</strong><br/>
+          • General: &lt;140/90 mmHg<br/>
+          • High-risk (e.g. DM, CKD, CVD): &lt;130/80 mmHg if tolerated
+        </li>
+      </ol>
+      <p class="note">📚 Sources: UpToDate, Saudi Hypertension Guidelines, JNC8</p>
+    </div>
+    
+
+    <button class="accordion">2. DM Type (II) Management 🍬</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Diagnosis:</strong><br/>
+          • FPG ≥126 mg/dL (7.0 mmol/L) OR<br/>
+          • HbA1c ≥6.5% OR<br/>
+          • 2-hr OGTT ≥200 mg/dL OR<br/>
+          • Random glucose ≥200 mg/dL with symptoms
+        </li>
+        <li><strong>2. Initial Workup:</strong><br/>
+          • HbA1c, lipid profile, renal function, urine ACR<br/>
+          • BP, weight, foot exam, retinal exam (refer ophtho)
+        </li>
+        <li><strong>3. Lifestyle Interventions:</strong><br/>
+          • Diet: calorie control, carb moderation<br/>
+          • Exercise: ≥150 min/week aerobic activity<br/>
+          • Weight loss goal: 5–10%
+        </li>
+        <li><strong>4. Start Pharmacologic Therapy:</strong><br/>
+          • First-line: Metformin 500 mg once/twice daily, titrate to 2000 mg/day<br/>
+          • Avoid if eGFR &lt;30. Hold during acute illness or contrast
+        </li>
+        <li><strong>5. Add Second Agent:</strong><br/>
+          • ASCVD: Add GLP-1 RA or SGLT2i<br/>
+          • CKD/HF: Prefer SGLT2i<br/>
+          • Need weight loss: GLP-1 RA<br/>
+          • Cost concern: SU or TZD
+        </li>
+        <li><strong>6. HbA1c Target:</strong><br/>
+          • General target: &lt;7.0%<br/>
+          • Individualize based on age, comorbidities, hypoglycemia risk
+        </li>
+        <li><strong>7. Monitoring:</strong><br/>
+          • Check HbA1c every 3–6 months<br/>
+          • Annual labs: lipids, renal, foot, retina
+        </li>
+      </ol>
+      <p class="note">📚 Sources: UpToDate, ADA 2024, Saudi Diabetes Guidelines</p>
+    </div>
+    
+
+    <button class="accordion">3. Dyslipidemia Management 🧬</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Screening:</strong><br/>
+          • Adults ≥40 yrs OR ≥20 yrs with diabetes, smoking, hypertension, obesity.<br/>
+          • Fasting lipid profile: Total, LDL, HDL, TG
+        </li>
+        <li><strong>2. Risk Assessment:</strong><br/>
+          • Use ASCVD calculator or check risk category (low/moderate/high/very high)<br/>
+          • DM, CKD, smoking, HTN increase risk
+        </li>
+        <li><strong>3. Lifestyle Modification (all patients):</strong><br/>
+          • Diet: low saturated fat, more fiber<br/>
+          • Exercise: ≥150 min/week<br/>
+          • Weight loss, smoking cessation
+        </li>
+        <li><strong>4. Start Statin Therapy:</strong><br/>
+          • Moderate risk: Atorvastatin 10–20 mg<br/>
+          • High risk: Atorvastatin 40–80 mg or Rosuvastatin 20 mg
+        </li>
+        <li><strong>5. Targets:</strong><br/>
+          • High-risk: LDL &lt; 2.6 mmol/L (<100 mg/dL)<br/>
+          • Very high-risk (e.g. ASCVD, DM + RF): LDL &lt; 1.8 mmol/L (<70 mg/dL)
+        </li>
+        <li><strong>6. Monitoring:</strong><br/>
+          • Repeat lipids in 6–12 weeks after starting statin<br/>
+          • Check liver enzymes if symptomatic
+        </li>
+      </ol>
+      <p class="note">📚 Sources: UpToDate, Saudi Lipid Guidelines, ACC/AHA 2019</p>
+    </div>
+
+
+    <button class="accordion">4. Upper Respiratory Tract Infection (URTI) 🤧</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Common Causes:</strong><br/>
+          • Viral: Rhinovirus, Influenza, Coronavirus<br/>
+          • Bacterial (rare): Group A Streptococcus (pharyngitis)
+        </li>
+        <li><strong>2. Symptoms:</strong><br/>
+          • Sore throat, nasal congestion, cough, fever, fatigue<br/>
+          • Red flags: dyspnea, chest pain, high fever >3 days
+        </li>
+        <li><strong>3. Evaluation:</strong><br/>
+          • Centor Score for pharyngitis<br/>
+          • No labs/radiology needed unless concern for complications
+        </li>
+        <li><strong>4. Management:</strong><br/>
+          • Supportive: Paracetamol, fluids, rest<br/>
+          • Nasal saline, decongestants (short term), throat lozenges
+        </li>
+        <li><strong>5. Antibiotics:</strong><br/>
+          • Not routinely indicated<br/>
+          • Consider Penicillin V 500 mg BID x10 days if Centor ≥3 + positive swab
+        </li>
+        <li><strong>6. Patient Education:</strong><br/>
+          • Explain viral nature and expected duration (5–10 days)<br/>
+          • Return precautions if worsening
+        </li>
+      </ol>
+      <p class="note">📚 Sources: UpToDate, NICE Guidelines, CDC</p>
+    </div>
+
+
+    <button class="accordion">5. Depression Screening & Management 😔</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Screening:</strong><br/>
+          • Ask PHQ-2: "Little interest? Feeling down?"<br/>
+          • If positive → do full PHQ-9
+        </li>
+        <li><strong>2. Diagnosis:</strong><br/>
+          • ≥5 symptoms for ≥2 weeks (incl. low mood or anhedonia)<br/>
+          • Rule out hypothyroidism, substance use
+        </li>
+        <li><strong>3. Severity-Based Approach:</strong><br/>
+          • Mild: Lifestyle + watchful waiting<br/>
+          • Moderate: Start SSRI + counseling<br/>
+          • Severe: SSRI + refer psychiatry ± urgent intervention
+        </li>
+        <li><strong>4. First-line Medications:</strong><br/>
+          • Sertraline: start 25–50 mg daily, max 200 mg<br/>
+          • Fluoxetine: start 10–20 mg daily, max 60 mg
+        </li>
+        <li><strong>5. Monitoring:</strong><br/>
+          • Reassess in 2–4 weeks<br/>
+          • Watch for suicidality, side effects
+        </li>
+        <li><strong>6. Duration:</strong><br/>
+          • Continue for at least 6–9 months after improvement<br/>
+          • Consider long-term if recurrent episodes
+        </li>
+      </ol>
+      <p class="note">📚 Sources: NICE Guidelines, UpToDate, WHO mhGAP</p>
+    </div>
+
+
+    <button class="accordion">6. Low Back Pain Management 🧍‍♂️</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Initial Assessment:</strong><br/>
+          • History + physical exam<br/>
+          • Identify red flags: trauma, weight loss, fever, cancer history, night pain, saddle anesthesia, weakness
+        </li>
+        <li><strong>2. No Red Flags:</strong><br/>
+          • Diagnose as non-specific mechanical back pain<br/>
+          • No imaging needed initially
+        </li>
+        <li><strong>3. First-Line Treatment:</strong><br/>
+          • Paracetamol 500–1000 mg Q6H PRN<br/>
+          • Ibuprofen 400 mg TID with meals (if no contraindications)<br/>
+          • Gentle movement, activity encouragement
+        </li>
+        <li><strong>4. Consider Muscle Relaxants:</strong><br/>
+          • E.g. Cyclobenzaprine 5–10 mg at bedtime (short-term)
+        </li>
+        <li><strong>5. Reassess in 2–4 Weeks:</strong><br/>
+          • Most resolve in &lt;6 weeks<br/>
+          • If persistent or red flags → imaging (MRI preferred)
+        </li>
+        <li><strong>6. Patient Education:</strong><br/>
+          • Avoid prolonged bed rest<br/>
+          • Reassure: good prognosis in most cases
+        </li>
+      </ol>
+      <p class="note">📚 Sources: UpToDate, NICE Guidelines, AAFP</p>
+    </div>
+
+
+    <button class="accordion">7. Chronic Asthma Management 🌬️</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Diagnosis:</strong><br/>
+          • Clinical: episodic wheeze, cough, dyspnea + response to bronchodilators<br/>
+          • Confirm with spirometry if possible (FEV1 reversibility ≥12%)
+        </li>
+        <li><strong>2. Assess Control:</strong><br/>
+          • Ask about symptoms, night awakenings, SABA use, activity limitation
+        </li>
+        <li><strong>3. Stepwise Therapy:</strong><br/>
+          • Step 1: PRN low-dose ICS-formoterol<br/>
+          • Step 2: Daily low-dose ICS (e.g. Budesonide 200–400 mcg/day)<br/>
+          • Step 3: Low-dose ICS + LABA (e.g. Salmeterol)<br/>
+          • Step 4: Medium-dose ICS + LABA<br/>
+          • Step 5: Refer + consider biologics
+        </li>
+        <li><strong>4. Inhaler Technique & Adherence:</strong><br/>
+          • Recheck at every visit<br/>
+          • Use spacer if needed
+        </li>
+        <li><strong>5. Action Plan:</strong><br/>
+          • Provide written asthma action plan (green/yellow/red zones)<br/>
+          • Educate on when to increase meds or seek help
+        </li>
+        <li><strong>6. Follow-Up:</strong><br/>
+          • Review control every 1–3 months<br/>
+          • Consider stepping down if controlled ≥3 months
+        </li>
+      </ol>
+      <p class="note">📚 Sources: GINA 2024, UpToDate, Saudi Asthma Guidelines</p>
+    </div>
+
+
+    <button class="accordion">8. Hypothyroidism Management 🦋</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Diagnosis:</strong><br/>
+          • High TSH + Low Free T4 = Primary hypothyroidism<br/>
+          • Common cause: Hashimoto’s thyroiditis (check anti-TPO antibodies)
+        </li>
+        <li><strong>2. Symptoms:</strong><br/>
+          • Fatigue, weight gain, cold intolerance, constipation, dry skin, depression
+        </li>
+        <li><strong>3. Treatment:</strong><br/>
+          • Levothyroxine 1.6 mcg/kg/day (full dose for young adults)<br/>
+          • Start lower (25–50 mcg) in elderly or cardiac patients
+        </li>
+        <li><strong>4. Administration Tips:</strong><br/>
+          • Take on empty stomach, same time daily<br/>
+          • Avoid calcium/iron within 4 hours
+        </li>
+        <li><strong>5. Monitoring:</strong><br/>
+          • Recheck TSH after 6–8 weeks of dose adjustment<br/>
+          • Goal: Normalize TSH (typically 0.5–4.0 mIU/L)
+        </li>
+        <li><strong>6. Special Cases:</strong><br/>
+          • Pregnancy: Increase dose by 30%, target TSH &lt;2.5<br/>
+          • Subclinical (mild TSH elevation): Treat if symptoms, +TPO, or TSH >10
+        </li>
+      </ol>
+      <p class="note">📚 Sources: UpToDate, ATA Guidelines, AMBOSS</p>
+    </div>
+
+
+    <button class="accordion">9. Obesity Management ⚖️</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Diagnosis:</strong><br/>
+          • BMI ≥30 = Obesity<br/>
+          • BMI 25–29.9 = Overweight<br/>
+          • Measure waist circumference (↑ risk if >102 cm men, >88 cm women)
+        </li>
+        <li><strong>2. Risk Assessment:</strong><br/>
+          • Screen for diabetes, hypertension, dyslipidemia, NAFLD, sleep apnea
+        </li>
+        <li><strong>3. Lifestyle Intervention (cornerstone):</strong><br/>
+          • Diet: caloric deficit (↓500–750 kcal/day)<br/>
+          • Physical activity: ≥150 min/week<br/>
+          • Behavioral support and follow-up
+        </li>
+        <li><strong>4. Pharmacologic Therapy:</strong><br/>
+          • If BMI ≥30 OR ≥27 with comorbidities<br/>
+          • Example: Orlistat 120 mg TID with meals (GI side effects)<br/>
+          • Others (if available): Liraglutide, Semaglutide, Naltrexone/Bupropion
+        </li>
+        <li><strong>5. Bariatric Surgery:</strong><br/>
+          • Consider if BMI ≥40 OR ≥35 with comorbidities and failed other methods
+        </li>
+        <li><strong>6. Monitoring:</strong><br/>
+          • Monthly weight check initially<br/>
+          • Target: ≥5% weight loss in 3–6 months
+        </li>
+      </ol>
+      <p class="note">📚 Sources: UpToDate, Saudi Obesity Guidelines, AACE 2023</p>
+    </div>
+
+
+    <button class="accordion">10. Smoking Cessation 🚭</button>
+    <div class="panel">
+      <ol>
+        <li><strong>1. Ask & Document:</strong><br/>
+          • Ask every patient about tobacco use<br/>
+          • Document smoking status in chart
+        </li>
+        <li><strong>2. Advise:</strong><br/>
+          • Give clear, strong, personalized advice to quit
+        </li>
+        <li><strong>3. Assess Readiness:</strong><br/>
+          • Use 5 stages of change (precontemplation → maintenance)<br/>
+          • If not ready: motivational interviewing
+        </li>
+        <li><strong>4. Assist (if ready):</strong><br/>
+          • Set quit date within 2 weeks<br/>
+          • Offer pharmacotherapy + behavioral support
+        </li>
+        <li><strong>5. First-line Medications:</strong><br/>
+          • Nicotine patch 21 mg/day (↓ gradually)<br/>
+          • Bupropion SR 150 mg daily × 3 days, then BID (start 1 week before quit)<br/>
+          • Varenicline: 0.5 mg daily → 1 mg BID (start 1 week before quit)
+        </li>
+        <li><strong>6. Follow-Up:</strong><br/>
+          • Reassess in 1–2 weeks post quit date<br/>
+          • Support relapse prevention
+        </li>
+      </ol>
+      <p class="note">📚 Sources: UpToDate, WHO, CDC, Saudi Tobacco Control Guidelines</p>
+    </div>
+
+</div>
+<script>
+  var acc = document.getElementsByClassName("accordion");
+  for (var i = 0; i < acc.length; i++) {
+    acc[i].addEventListener("click", function() {
+      this.classList.toggle("active");
+      var panel = this.nextElementSibling;
+      if (panel.style.display === "block") {
+        panel.style.display = "none";
+      } else {
+        panel.style.display = "block";
+      }
+    });
+  }
+  function toggleTheme() {
+    document.body.classList.toggle('dark-mode');
+    localStorage.setItem('theme', document.body.classList.contains('dark-mode') ? 'dark' : 'light');
+  }
+  window.onload = function() {
+    if (localStorage.getItem('theme') === 'dark') {
+      document.body.classList.add('dark-mode');
+    }
+  }
+</script>
+<button class="theme-toggle" onclick="toggleTheme()">🌓</button>
+</body>
+</html>
