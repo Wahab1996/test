@@ -82,12 +82,36 @@ footer {
   font-size: 0.8rem;
   color: #777;
 }
+
+/* 🌙 Dark mode */
+body.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+body.dark-mode header {
+  background: #1e1e1e;
+  color: #fff;
+}
+body.dark-mode h2 {
+  color: #90caf9;
+}
+body.dark-mode .card {
+  background: #1e1e1e;
+  color: #eee;
+  box-shadow: 0 2px 8px rgba(255,255,255,0.05);
+}
+body.dark-mode .card:hover {
+  box-shadow: 0 8px 16px rgba(255,255,255,0.1);
+}
+body.dark-mode footer {
+  color: #aaa;
+}
 </style>
 
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="assets/icon-192.png" type="image/png">
 <meta name="theme-color" content="#0077b6">
-  
+
 </head>
 <body>
 
@@ -97,7 +121,7 @@ footer {
     <a href="#">Home</a> |
     <a href="about/index.html">About</a>
   </nav>
-<button id="theme-toggle" style="margin-left:auto;">🌓</button>
+  <button id="theme-toggle" style="margin-left:auto;">🌓</button>
 </header>
 
 <main>
@@ -143,6 +167,26 @@ footer {
     EMPOWERING FAMILY PHYSICIANS WITH RELIABLE TOOLS.
   </footer>
 </main>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const toggleBtn = document.getElementById("theme-toggle");
+    const currentTheme = localStorage.getItem("theme");
+
+    if (currentTheme === "dark") {
+        document.body.classList.add("dark-mode");
+    }
+
+    toggleBtn.addEventListener("click", () => {
+        document.body.classList.toggle("dark-mode");
+        let theme = "light";
+        if (document.body.classList.contains("dark-mode")) {
+            theme = "dark";
+        }
+        localStorage.setItem("theme", theme);
+    });
+});
+</script>
 
 </body>
 </html>
