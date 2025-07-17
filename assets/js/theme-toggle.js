@@ -7,12 +7,14 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("dark-mode");
     }
 
-    toggleBtn.addEventListener("click", () => {
-        document.body.classList.toggle("dark-mode");
-        let theme = "light";
-        if (document.body.classList.contains("dark-mode")) {
-            theme = "dark";
-        }
-        localStorage.setItem("theme", theme);
-    });
+    if (toggleBtn) {
+        toggleBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            let theme = "light";
+            if (document.body.classList.contains("dark-mode")) {
+                theme = "dark";
+            }
+            localStorage.setItem("theme", theme);
+        });
+    }
 });
