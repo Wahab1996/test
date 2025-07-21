@@ -1,1 +1,204 @@
-test2
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=0.7"/>
+<title>📖 Quick References</title>
+<link rel="stylesheet" href="../assets/css/style.css" />
+<script src="../assets/js/theme-toggle.js" defer></script>
+<style>
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: var(--bg-color, #f0f0f0);
+  color: var(--text-color, #333);
+  transition: background-color 0.3s, color 0.3s;
+}
+header {
+  background-color: var(--header-bg, #004080);
+  color: white;
+  padding: 1em;
+  text-align: center;
+  position: relative;
+}
+#theme-toggle {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  background-color: #fff;
+  color: #004080;
+  border: none;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  cursor: pointer;
+}
+main {
+  padding: 2em;
+}
+section {
+  margin-bottom: 2em;
+}
+h2 {
+  color: #004080;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1em;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+}
+th {
+  background-color: #e6f2ff;
+}
+:root {
+  --bg-color: #f0f0f0;
+  --text-color: #333;
+  --header-bg: #004080;
+}
+.dark-mode {
+  --bg-color: #121212;
+  --text-color: #eee;
+  --header-bg: #1e1e1e;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>📖 Quick References</h1>
+  <button id="theme-toggle">🌓</button>
+</header>
+
+<main>
+
+<section>
+  <h2>💊 Emergency Drug Doses (Pediatric & Adult)</h2>
+  <table>
+    <tr><th>Drug</th><th>Pediatric Dose</th><th>Adult Dose</th></tr>
+    <tr><td>Adrenaline (anaphylaxis)</td><td>0.01 mg/kg IM (max 0.5 mg)</td><td>0.3–0.5 mg IM</td></tr>
+    <tr><td>Atropine (bradycardia)</td><td>0.02 mg/kg IV (min 0.1 mg, max 0.5 mg)</td><td>0.5–1 mg IV q3–5min (max 3 mg)</td></tr>
+    <tr><td>Amiodarone (VT/VF)</td><td>5 mg/kg IV over 20–60 min</td><td>300 mg IV bolus, then 150 mg if needed</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>🩺 Normal Vital Signs by Age</h2>
+  <table>
+    <tr><th>Age</th><th>HR (bpm)</th><th>RR (breaths/min)</th><th>BP (mmHg)</th></tr>
+    <tr><td>Newborn</td><td>100–160</td><td>30–60</td><td>~65/40</td></tr>
+    <tr><td>Infant</td><td>90–120</td><td>30–50</td><td>~90/60</td></tr>
+    <tr><td>Child</td><td>80–110</td><td>20–30</td><td>~100/65</td></tr>
+    <tr><td>Adult</td><td>60–100</td><td>12–20</td><td>~120/80</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>📊 BMI Categories</h2>
+  <table>
+    <tr><th>BMI</th><th>Category</th></tr>
+    <tr><td>&lt;18.5</td><td>Underweight</td></tr>
+    <tr><td>18.5–24.9</td><td>Normal weight</td></tr>
+    <tr><td>25–29.9</td><td>Overweight</td></tr>
+    <tr><td>30–34.9</td><td>Obesity Class I</td></tr>
+    <tr><td>35–39.9</td><td>Obesity Class II</td></tr>
+    <tr><td>≥40</td><td>Obesity Class III (morbid)</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>🧪 ABG Quick Interpretation</h2>
+  <ul>
+    <li>pH &gt;7.45 → Alkalosis | pH &lt;7.35 → Acidosis</li>
+    <li>PaCO₂ &gt;45 → Respiratory acidosis | &lt;35 → Respiratory alkalosis</li>
+    <li>HCO₃⁻ &gt;26 → Metabolic alkalosis | &lt;22 → Metabolic acidosis</li>
+    <li><strong>Example:</strong> pH 7.30, PaCO₂ 50, HCO₃⁻ 24 → Respiratory acidosis</li>
+  </ul>
+</section>
+
+<section>
+  <h2>💉 Routine Vaccination Schedule Highlights</h2>
+  <table>
+    <tr><th>Vaccine</th><th>Schedule</th></tr>
+    <tr><td>DTaP</td><td>2, 4, 6, 15–18 months, 4–6 years</td></tr>
+    <tr><td>MMR</td><td>12–15 months, 4–6 years</td></tr>
+    <tr><td>Td booster</td><td>Every 10 years after age 11</td></tr>
+    <tr><td>Influenza</td><td>Yearly ≥6 months</td></tr>
+  </table>
+</section>
+
+<section>
+  <h2>🧠 Glasgow Coma Scale (GCS)</h2>
+
+  <h3>🔹 Adult GCS</h3>
+  <table>
+    <tr><th>Category</th><th>Response</th><th>Score</th></tr>
+    <tr><td rowspan="4">Eye Opening (E)</td><td>Spontaneous</td><td>4</td></tr>
+    <tr><td>To speech</td><td>3</td></tr>
+    <tr><td>To pain</td><td>2</td></tr>
+    <tr><td>No response</td><td>1</td></tr>
+
+    <tr><td rowspan="5">Verbal Response (V)</td><td>Oriented</td><td>5</td></tr>
+    <tr><td>Confused</td><td>4</td></tr>
+    <tr><td>Inappropriate words</td><td>3</td></tr>
+    <tr><td>Incomprehensible sounds</td><td>2</td></tr>
+    <tr><td>No response</td><td>1</td></tr>
+
+    <tr><td rowspan="6">Motor Response (M)</td><td>Obeys commands</td><td>6</td></tr>
+    <tr><td>Localizes pain</td><td>5</td></tr>
+    <tr><td>Withdraws from pain</td><td>4</td></tr>
+    <tr><td>Flexion to pain (decorticate)</td><td>3</td></tr>
+    <tr><td>Extension to pain (decerebrate)</td><td>2</td></tr>
+    <tr><td>No response</td><td>1</td></tr>
+  </table>
+  <p><strong>Total Score = E + V + M (Range: 3–15)</strong></p>
+
+  <ul style="list-style-type: none; padding-left: 0; font-weight: bold;">
+    <li><span style="color: green;">13–15 → Mild</span></li>
+    <li><span style="color: orange;">9–12 → Moderate</span></li>
+    <li><span style="color: red;">≤8 → Severe (Coma)</span></li>
+  </ul>
+
+  <br>
+
+  <h3>🔹 Pediatric GCS (≤2 years)</h3>
+  <table>
+    <tr><th>Category</th><th>Response</th><th>Score</th></tr>
+    <tr><td rowspan="4">Eye Opening (E)</td><td>Spontaneous</td><td>4</td></tr>
+    <tr><td>To speech</td><td>3</td></tr>
+    <tr><td>To pain</td><td>2</td></tr>
+    <tr><td>No response</td><td>1</td></tr>
+
+    <tr><td rowspan="5">Verbal Response (V)</td><td>Smiles/coos appropriately</td><td>5</td></tr>
+    <tr><td>Cries but consolable</td><td>4</td></tr>
+    <tr><td>Irritable, inconsolable</td><td>3</td></tr>
+    <tr><td>Moans to pain</td><td>2</td></tr>
+    <tr><td>No response</td><td>1</td></tr>
+
+    <tr><td rowspan="6">Motor Response (M)</td><td>Spontaneous movement</td><td>6</td></tr>
+    <tr><td>Withdraws to touch</td><td>5</td></tr>
+    <tr><td>Withdraws to pain</td><td>4</td></tr>
+    <tr><td>Abnormal flexion (decorticate)</td><td>3</td></tr>
+    <tr><td>Abnormal extension (decerebrate)</td><td>2</td></tr>
+    <tr><td>No response</td><td>1</td></tr>
+  </table>
+  <p><strong>Total Score = E + V + M (Range: 3–15)</strong></p>
+
+  <ul style="list-style-type: none; padding-left: 0; font-weight: bold;">
+    <li><span style="color: green;">13–15 → Mild</span></li>
+    <li><span style="color: orange;">9–12 → Moderate</span></li>
+    <li><span style="color: red;">≤8 → Severe (Coma)</span></li>
+  </ul>
+</section>
+
+</main>
+
+<footer style="text-align: center; padding: 10px; font-size: 0.8em; background-color: #1a237e; color: white;">
+  © 2025 Dr. Abdulwahab Abdulmannan AlSheikh – All rights reserved
+</footer>
+
+</body>
+</html>
